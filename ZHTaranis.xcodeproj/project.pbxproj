@@ -48,12 +48,11 @@
 		C6F693FC1BC4CE9600D73D12 /* ZHTrailEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ZHTrailEmitter.sks; sourceTree = "<group>"; };
 		C6F694031BC4CF2D00D73D12 /* ZHUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUtilities.h; sourceTree = "<group>"; };
 		C6F694041BC4CF2D00D73D12 /* ZHUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUtilities.m; sourceTree = "<group>"; };
-		C6F694081BC4E2FD00D73D12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C6F694091BC4E2FD00D73D12 /* ZHTaranis_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ZHTaranis_sketch.ino; sourceTree = "<group>"; };
 		C6F6940C1BC59BB300D73D12 /* ZHModeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHModeTableViewController.h; sourceTree = "<group>"; };
 		C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModeTableViewController.m; sourceTree = "<group>"; };
 		C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSignalManager.h; sourceTree = "<group>"; };
 		C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSignalManager.m; sourceTree = "<group>"; };
+		CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ZHTaranis_sketch.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +69,7 @@
 		C6F693C01BC4CBC500D73D12 = {
 			isa = PBXGroup;
 			children = (
-				C6F694071BC4E2FD00D73D12 /* ZHTaranis_sketch */,
+				CF1D182B1BC5ACD500631283 /* ZHTaranis_sketch */,
 				C6F693CB1BC4CBC500D73D12 /* ZHTaranis */,
 				C6F693CA1BC4CBC500D73D12 /* Products */,
 			);
@@ -163,15 +162,6 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		C6F694071BC4E2FD00D73D12 /* ZHTaranis_sketch */ = {
-			isa = PBXGroup;
-			children = (
-				C6F694081BC4E2FD00D73D12 /* README.md */,
-				C6F694091BC4E2FD00D73D12 /* ZHTaranis_sketch.ino */,
-			);
-			path = ZHTaranis_sketch;
-			sourceTree = "<group>";
-		};
 		C6F6940F1BC59BBF00D73D12 /* Mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +169,14 @@
 				C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */,
 			);
 			name = Mode;
+			sourceTree = "<group>";
+		};
+		CF1D182B1BC5ACD500631283 /* ZHTaranis_sketch */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */,
+			);
+			path = ZHTaranis_sketch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,6 +410,7 @@
 				C6F693E21BC4CBC500D73D12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
