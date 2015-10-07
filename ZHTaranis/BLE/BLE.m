@@ -172,8 +172,7 @@ static int rssi = 0;
     return temp;
 }
 
-- (void) controlSetup
-{
+- (void) controlSetup {
     self.CM = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 }
 

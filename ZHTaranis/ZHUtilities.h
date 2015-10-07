@@ -25,3 +25,4 @@
           outMinimum:(CGFloat)outMinimum
           outMaximum:(CGFloat)outMaximum;
 @end
+
