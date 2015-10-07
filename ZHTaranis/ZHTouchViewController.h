@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ZHTouchViewController.h
 //  ZHTaranis
 //
 //  Created by Zakk Hoyt on 10/6/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ZHTouchViewController : UIViewController
 
 @end
-

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C2C234E9A842290E4C239CF5540E03AD69E46445",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C2C234E9A842290E4C239CF5540E03AD69E46445" : 0,
+    "590CE9CD2C5DC4C253A4B6519BA508CF4AF10D4A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "02F3E815-4B0B-4A65-B615-742533AB5BF3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C2C234E9A842290E4C239CF5540E03AD69E46445" : "ZHTaranis\/",
+    "590CE9CD2C5DC4C253A4B6519BA508CF4AF10D4A" : "ZHTaranis\/ZHTaranis_sketch\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ZHTaranis",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZHTaranis.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:zakkhoyt\/PPM_Arduino.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "590CE9CD2C5DC4C253A4B6519BA508CF4AF10D4A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:zakkhoyt\/ZHTaranis.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C2C234E9A842290E4C239CF5540E03AD69E46445"
+    }
+  ]
+}
