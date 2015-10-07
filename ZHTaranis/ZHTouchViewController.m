@@ -12,6 +12,7 @@
 
 
 @interface ZHTouchViewController ()
+@property (weak, nonatomic) IBOutlet SKView *skView;
 
 @end
 
@@ -19,8 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-        [self setupSpriteKitScene];
+    
+    [self setupSpriteKitScene];
     
 }
 
@@ -44,29 +45,41 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark Private methods
 
 -(void)setupSpriteKitScene{
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    
+    
+    
+    
+    self.skView.showsFPS = YES;
+    self.skView.showsNodeCount = YES;
     
     /* Sprite Kit applies additional optimizations to improve rendering performance */
-    skView.ignoresSiblingOrder = YES;
+    self.skView.ignoresSiblingOrder = YES;
     
     ZHTouchScene *scene = [ZHTouchScene unarchiveFromFile:@"ZHTouchScene"];
-    scene.scaleMode = SKSceneScaleModeResizeFill;
-    [skView presentScene:scene];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    [self.skView presentScene:scene];
     
 }
+
+#pragma mark IBActions
+
+- (IBAction)armButtonTouchUpInside:(id)sender {
+}
+
+- (IBAction)disarmButtonTouchUpInside:(id)sender {
+}
+
 
 @end

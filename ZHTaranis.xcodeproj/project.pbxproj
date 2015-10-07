@@ -21,6 +21,8 @@
 		C6F694001BC4CE9600D73D12 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C6F693FB1BC4CE9600D73D12 /* spark.png */; };
 		C6F694011BC4CE9600D73D12 /* ZHTrailEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = C6F693FC1BC4CE9600D73D12 /* ZHTrailEmitter.sks */; };
 		C6F694051BC4CF2D00D73D12 /* ZHUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F694041BC4CF2D00D73D12 /* ZHUtilities.m */; };
+		C6F6940E1BC59BB300D73D12 /* ZHModeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */; };
+		C6F694121BC5A6CB00D73D12 /* ZHSignalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,10 @@
 		C6F694041BC4CF2D00D73D12 /* ZHUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUtilities.m; sourceTree = "<group>"; };
 		C6F694081BC4E2FD00D73D12 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C6F694091BC4E2FD00D73D12 /* ZHTaranis_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ZHTaranis_sketch.ino; sourceTree = "<group>"; };
+		C6F6940C1BC59BB300D73D12 /* ZHModeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHModeTableViewController.h; sourceTree = "<group>"; };
+		C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModeTableViewController.m; sourceTree = "<group>"; };
+		C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSignalManager.h; sourceTree = "<group>"; };
+		C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSignalManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 				C6F693CC1BC4CBC500D73D12 /* Supporting Files */,
 				C6F693E91BC4CC9300D73D12 /* Touch */,
 				C6F693EA1BC4CC9800D73D12 /* Motion */,
+				C6F6940F1BC59BBF00D73D12 /* Mode */,
 			);
 			path = ZHTaranis;
 			sourceTree = "<group>";
@@ -150,6 +157,8 @@
 			children = (
 				C6F694031BC4CF2D00D73D12 /* ZHUtilities.h */,
 				C6F694041BC4CF2D00D73D12 /* ZHUtilities.m */,
+				C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */,
+				C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -161,6 +170,15 @@
 				C6F694091BC4E2FD00D73D12 /* ZHTaranis_sketch.ino */,
 			);
 			path = ZHTaranis_sketch;
+			sourceTree = "<group>";
+		};
+		C6F6940F1BC59BBF00D73D12 /* Mode */ = {
+			isa = PBXGroup;
+			children = (
+				C6F6940C1BC59BB300D73D12 /* ZHModeTableViewController.h */,
+				C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */,
+			);
+			name = Mode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +259,11 @@
 				C6F693F01BC4CDA100D73D12 /* SKScene+Unarchive.m in Sources */,
 				C6F693D11BC4CBC500D73D12 /* AppDelegate.m in Sources */,
 				C6F693FD1BC4CE9600D73D12 /* ZHTouchScene.m in Sources */,
+				C6F6940E1BC59BB300D73D12 /* ZHModeTableViewController.m in Sources */,
 				C6F694051BC4CF2D00D73D12 /* ZHUtilities.m in Sources */,
 				C6F693E81BC4CC5400D73D12 /* ZHMotionViewController.m in Sources */,
 				C6F693CE1BC4CBC500D73D12 /* main.m in Sources */,
+				C6F694121BC5A6CB00D73D12 /* ZHSignalManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
