@@ -13,6 +13,7 @@
 @interface ZHBLEViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
 @property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
@@ -21,11 +22,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-}
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsNotConnected object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        self.outputLabel.text = @"Not connected.";
+    }];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsConnecting object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        self.outputLabel.text = @"Connecting!";
+    }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidConnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        self.outputLabel.text = @"Connected!";
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidDisconnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        if(self.navigationController.viewControllers.count > 0){
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        self.outputLabel.text = @"Disconnected!";
+    }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidUpdateRSSI object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        NSNumber *rssi = note.userInfo[@"rssi"];
+        if(rssi){
+            self.rssiLabel.text = rssi.stringValue;
+        }
+    }];
+
+    self.outputLabel.text = @"";
+    self.rssiLabel.text = @"";
 }
 
 /*
@@ -40,15 +64,14 @@
 
 
 - (IBAction)connectButtonAction:(id)sender {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.connectButton.enabled = NO;
-    self.hud.dimBackground = YES;
-    self.hud.labelText = @"Connecting...";
+//    self.connectButton.enabled = NO;
     [[VWWBLEController sharedInstance] scanForPeripherals];
-
+    
 }
 
 
 
 
 @end
+
+

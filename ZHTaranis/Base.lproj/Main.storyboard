@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A263e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LKg-mV-hWc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Motion-->
@@ -48,7 +49,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -71,7 +72,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -95,7 +96,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -115,7 +116,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -272,18 +273,30 @@
                                 <rect key="frame" x="20" y="315" width="560" height="265"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSSI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zS5-ZE-nuY">
+                                <rect key="frame" x="20" y="8" width="560" height="269"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zS5-ZE-nuY" firstAttribute="top" secondItem="nhd-Z8-JLF" secondAttribute="topMargin" constant="8" id="0og-2N-HJP"/>
                             <constraint firstItem="SK5-yR-Uug" firstAttribute="leading" secondItem="nhd-Z8-JLF" secondAttribute="leading" constant="20" id="NzR-mE-Sdv"/>
+                            <constraint firstItem="zS5-ZE-nuY" firstAttribute="leading" secondItem="nhd-Z8-JLF" secondAttribute="leadingMargin" id="TRD-Fy-BZ0"/>
                             <constraint firstItem="uGw-WU-b8y" firstAttribute="centerY" secondItem="nhd-Z8-JLF" secondAttribute="centerY" id="XeX-PK-0ja"/>
+                            <constraint firstItem="zS5-ZE-nuY" firstAttribute="centerX" secondItem="nhd-Z8-JLF" secondAttribute="centerX" id="YYD-d5-IvC"/>
+                            <constraint firstItem="zS5-ZE-nuY" firstAttribute="trailing" secondItem="nhd-Z8-JLF" secondAttribute="trailingMargin" id="ZuL-JV-hRX"/>
                             <constraint firstItem="bkx-Ki-JfN" firstAttribute="top" secondItem="SK5-yR-Uug" secondAttribute="bottom" constant="20" id="hVj-tX-unw"/>
                             <constraint firstItem="uGw-WU-b8y" firstAttribute="centerX" secondItem="nhd-Z8-JLF" secondAttribute="centerX" id="iAt-Sq-J07"/>
                             <constraint firstAttribute="trailing" secondItem="SK5-yR-Uug" secondAttribute="trailing" constant="20" id="ixP-w3-F8g"/>
+                            <constraint firstItem="uGw-WU-b8y" firstAttribute="top" secondItem="zS5-ZE-nuY" secondAttribute="bottom" constant="8" id="r14-98-wrD"/>
                             <constraint firstItem="SK5-yR-Uug" firstAttribute="top" secondItem="uGw-WU-b8y" secondAttribute="bottom" id="tbV-XE-sym"/>
                         </constraints>
                     </view>
@@ -291,6 +304,7 @@
                     <connections>
                         <outlet property="connectButton" destination="uGw-WU-b8y" id="I1g-wY-SBu"/>
                         <outlet property="outputLabel" destination="SK5-yR-Uug" id="MV0-B5-Gz1"/>
+                        <outlet property="rssiLabel" destination="zS5-ZE-nuY" id="Pp5-jc-qAG"/>
                         <segue destination="oJi-MO-chJ" kind="show" id="pKM-Tz-rnj"/>
                     </connections>
                 </viewController>
