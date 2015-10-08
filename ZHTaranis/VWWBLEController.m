@@ -124,22 +124,44 @@ const UInt8 kResetCommand = 0xFF;
 }
 
 
--(void)sendReset{
+-(void)sendInitialize{
     UInt8 buf[] = {kResetCommand, 0x00, 0x00};
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [_ble write:data];
 }
 
--(void)writeThrottle:(NSUInteger)throttle{
-    UInt8 lsb = throttle % 0xFF;
+-(void)sendThrottle:(NSUInteger)throttle{
+    
+//    NSData *data = [NSData dataWithBytes:&throttle length:sizeof(throttle)];
+
+    UInt8 lsb = throttle & 0xFF;
     UInt8 msb = throttle >> 8;
-    ZH_LOG_DEBUG(@"throttle: %lu", (unsigned long)throttle);
-    ZH_LOG_DEBUG(@"msb: %lu", (unsigned long)msb);
-    ZH_LOG_DEBUG(@"lsb: %lu", (unsigned long)lsb);
+    ZH_LOG_DEBUG(@"throttle: %ld %04x", (unsigned long)throttle, (unsigned int)throttle);
+    ZH_LOG_DEBUG(@"msb: %04X", (unsigned int)msb);
+    ZH_LOG_DEBUG(@"lsb: %04X", (unsigned int)lsb);
+    
     UInt8 buf[] = {kThrottleCommand, msb, lsb};
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [_ble write:data];
 }
+
+
+
+//- (IBAction)BLEShieldSend:(id)sender
+//{
+//    NSString *s;
+//    NSData *d;
+//    
+//    if (self.textField.text.length > 16)
+//        s = [self.textField.text substringToIndex:16];
+//    else
+//        s = self.textField.text;
+//    
+//    s = [NSString stringWithFormat:@"%@\r\n", s];
+//    d = [s dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    [bleShield write:d];
+//}
 
 //-(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock{
 //    self.initServosCompletionBlock = completionBlock;
@@ -201,7 +223,7 @@ const UInt8 kResetCommand = 0xFF;
     [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerDidConnect object:nil];
     _rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
     
-    [self sendReset];
+    [self sendInitialize];
 }
 
 // When data is comming, this will be called

@@ -54,7 +54,7 @@
         }
     }];
 
-//    self.throttleSlider.hidden = YES;
+    self.throttleSlider.hidden = YES;
     self.throttleSlider.minimumValue = 1000;
     self.throttleSlider.maximumValue = 2000;
     self.outputLabel.text = @"";
@@ -70,13 +70,7 @@
 
 - (IBAction)throttleSliderValueChanged:(UISlider*)sender {
     NSUInteger throttle = sender.value;
-    
-    UInt8 lsb = throttle % 0xFF;
-    UInt8 msb = throttle >> 8;
-    ZH_LOG_DEBUG(@"throttle: %lu", (unsigned long)throttle);
-    ZH_LOG_DEBUG(@"msb: %lu", (unsigned long)msb);
-    ZH_LOG_DEBUG(@"lsb: %lu", (unsigned long)lsb);
-
+    [[VWWBLEController sharedInstance] sendThrottle:throttle];
 }
 
 

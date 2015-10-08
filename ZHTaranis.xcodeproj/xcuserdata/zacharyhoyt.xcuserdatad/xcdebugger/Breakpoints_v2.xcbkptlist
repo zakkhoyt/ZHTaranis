@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZHTaranis/VWWBLEController.m"
-            timestampString = "465951154.820639"
+            timestampString = "465957056.136313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "@implementation VWWBLEController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZHTaranis/VWWBLEController.m"
-            timestampString = "465951155.551797"
+            timestampString = "465957056.136313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "@implementation VWWBLEController"
             landmarkType = "3">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZHTaranis/VWWBLEController.m"
-            timestampString = "465951192.630274"
+            timestampString = "465957056.136313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "@implementation VWWBLEController"
             landmarkType = "3">
          </BreakpointContent>

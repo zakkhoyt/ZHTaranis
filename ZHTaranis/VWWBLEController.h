@@ -26,7 +26,7 @@ typedef void (^VWWEmptyBlock)();
 +(VWWBLEController*)sharedInstance;
 
 -(void)scanForPeripherals;
--(void)writeThrottle:(NSUInteger)throttle;
+-(void)sendThrottle:(NSUInteger)throttle;
 
 @end
 

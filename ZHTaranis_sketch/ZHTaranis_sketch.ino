@@ -16,7 +16,8 @@
   #include <boards.h>
   #include <ble_shield.h>
   #include <services.h>
-  const unsigned int kLEDPin = 4;
+  const unsigned int kLEDConnectedPin = 4;
+  const unsigned int kLEDInitializedPin = 5;
   
   const unsigned int kLoadCandyCommand = 0xB0;
   const unsigned int kCandyWasLoadedCommand = 0xC0;
@@ -24,10 +25,10 @@
 
 
 
-//#define VWW_ENABLE_PPM 1
+#define VWW_ENABLE_PPM 1
 
 #if defined(VWW_ENABLE_PPM)
-//////////////////////CONFIGURATION///////////////////////////////
+
 #define CHANNELS 8  //set the number of chanels
 #define ZH_DEFAULT_SERVO_VALUE 1500  //set the default servo value
 #define ZH_DEFAULT_SERVO_MAX_VALUE 2000  //set the default servo value
@@ -36,20 +37,23 @@
 #define ZH_PULSE_LENGTH 300  //set the pulse length
 #define ZH_STATE_POSITIVE 1  //set polarity of the pulses: 1 is positive, 0 is negative
 #define ZH_PPM_OUT_PIN 9  //set PPM signal output pin on the arduino
-
 uint8_t  g_ppmInput[CHANNELS] = {A0, A1, A2, A3, A4, A5, A4, A5}; // Input pins
-//////////////////////////////////////////////////////////////////
-
 int ppm[CHANNELS];
 
 #endif
 
+uint16_t throttle = 1500;
+
+
 void setup(){  
   #if defined(VWW_ENABLE_BLE)
     Serial.begin(57600);  
-    pinMode(kLEDPin, OUTPUT);
-    digitalWrite(kLEDPin, HIGH);
+    
+    pinMode(kLEDConnectedPin, OUTPUT);
+    digitalWrite(kLEDConnectedPin, LOW);
   
+    pinMode(kLEDInitializedPin, OUTPUT);
+    digitalWrite(kLEDInitializedPin, LOW);
   
     // Init. and start BLE library.
     ble_begin();
@@ -90,6 +94,7 @@ void loop(){
   }
   ppm[6] = ZH_DEFAULT_SERVO_MIN_VALUE;
   ppm[7] = ZH_DEFAULT_SERVO_MIN_VALUE;
+//  ppm[0] = throttle;
 
   delay(10);
 #endif
@@ -103,29 +108,27 @@ void loop(){
         byte data1 = ble_read();
         byte data2 = ble_read();
         
-        if (data0 == 0x04){
-            Serial.println("Recieved load candy command.");
-            
-            // Load candy and move it to inspection position
-//            loadCandy();
-//            delay(200);
-//            inspectCandy();
-            
-            // Send loaded reply
-            ble_write(kCandyWasLoadedCommand);
-            ble_write(0x00);
-            ble_write(0x00);
+        if (data0 == 0xFF){
+            Serial.println("Recieved initialize command.");
+            digitalWrite(kLEDInitializedPin, HIGH);            
+        } else if (data0 == 0x01){
+            uint16_t value = data1 * 0xFF;
+            value += data2;
+            throttle = value;
+            char   buffer[16];  //buffer used to format a line (+1 is for trailing 0)
+            sprintf(buffer, "Throttle command: %d", throttle);  
+            Serial.println(buffer);
             
         } else {
-            Serial.println("Unknown command");
+          Serial.println("Invalid command.");
         }
     }
     
     // Set status LED to on if connected
     if (ble_connected()) {
-      digitalWrite(kLEDPin, HIGH);
+      digitalWrite(kLEDConnectedPin, HIGH);
     } else {
-      digitalWrite(kLEDPin, LOW);
+      digitalWrite(kLEDConnectedPin, LOW);
     }
     
     // Allow BLE Shield to send/receive data
