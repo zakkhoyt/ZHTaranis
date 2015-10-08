@@ -160,6 +160,7 @@ const UInt8 kResetCommand = 0xFF;
 
 -(void)sendThrottle:(NSUInteger)throttle{
     [self sendValue:throttle toChannel:kThrottleCommand];
+    
 }
 
 -(void)sendAileron:(NSUInteger)aileron{
@@ -215,7 +216,7 @@ const UInt8 kResetCommand = 0xFF;
 -(void)connectionTimer:(NSTimer *)timer {
     if (_ble.peripherals.count > 0) {
         [_ble connectPeripheral:[_ble.peripherals objectAtIndex:0]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerDidConnect object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerIsConnected object:nil];
 
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerIsNotConnected object:nil];

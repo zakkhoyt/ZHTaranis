@@ -13,6 +13,7 @@
 
 #import <Foundation/Foundation.h>
 static NSString *VWWBLEControllerIsNotConnected = @"VWWBLEControllerIsNotConnected";
+static NSString *VWWBLEControllerIsConnected = @"VWWBLEControllerIsConnected";
 static NSString *VWWBLEControllerIsConnecting = @"VWWBLEControllerIsConnecting";
 static NSString *VWWBLEControllerDidConnect = @"VWWBLEControllerDidConnect";
 static NSString *VWWBLEControllerDidDisconnect = @"VWWBLEControllerDidDisconnect";
