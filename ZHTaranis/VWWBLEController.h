@@ -26,7 +26,17 @@ typedef void (^VWWEmptyBlock)();
 +(VWWBLEController*)sharedInstance;
 
 -(void)scanForPeripherals;
+
+
+-(void)sendToChannel:(NSUInteger)channel value:(NSUInteger)value;
 -(void)sendThrottle:(NSUInteger)throttle;
+-(void)sendAileron:(NSUInteger)aileron;
+-(void)sendElevator:(NSUInteger)elevator;
+-(void)sendRudder:(NSUInteger)rudder;
+-(void)sendAux1:(NSUInteger)aux1;
+-(void)sendAux2:(NSUInteger)aux2;
+-(void)sendAux3:(NSUInteger)aux3;
+-(void)sendAux4:(NSUInteger)aux4;
 
 @end
 

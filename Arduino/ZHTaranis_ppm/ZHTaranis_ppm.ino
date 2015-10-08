@@ -135,7 +135,7 @@ void readSerial(){
       value = ZH_DEFAULT_SERVO_MIN_VALUE;
     } 
     if(value > ZH_DEFAULT_SERVO_MAX_VALUE){
-      value = ZH_DEFAULT_SERVO_MAX_VALUE
+      value = ZH_DEFAULT_SERVO_MAX_VALUE;
     }
     
     g_serialString=""; // we are done parsing. Clear string for next round
@@ -173,11 +173,11 @@ void readSerial(){
 void writePPMValues(){
   g_ppmOutput[0] = g_throttle;
   g_ppmOutput[1] = g_aileron;
-  g_ppmOutput[2] - g_elevator;
+  g_ppmOutput[2] = g_elevator;
   g_ppmOutput[3] = g_rudder;
   g_ppmOutput[4] = g_aux1;
-  g_ppmOutput[4] = g_aux2;
-  g_ppmOutput[4] = g_aux3;
-  g_ppmOutput[4] = g_aux4;
+  g_ppmOutput[5] = g_aux2;
+  g_ppmOutput[6] = g_aux3;
+  g_ppmOutput[7] = g_aux4;
 
 }

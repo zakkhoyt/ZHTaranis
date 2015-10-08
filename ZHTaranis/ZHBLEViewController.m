@@ -16,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
 @property (nonatomic, strong) MBProgressHUD *hud;
-@property (weak, nonatomic) IBOutlet UISlider *throttleSlider;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+@property (strong, nonatomic) IBOutletCollection(UISlider) NSArray *sliders;
+@property (weak, nonatomic) IBOutlet UIButton *failsafeButton;
 
 @end
 
@@ -29,18 +31,18 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsNotConnected object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Not connected.";
-        self.connectButton.hidden = NO;
+        [self setupConnected:NO];
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsConnecting object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Connecting!";
-        self.connectButton.hidden = NO;
+        [self setupConnected:NO];
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidConnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Connected!";
-        self.connectButton.hidden = YES;
-        self.throttleSlider.hidden = NO;
+        [self setupConnected:YES];
+        [self failsafeButtonTouchUpInside:nil];
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidDisconnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
@@ -48,7 +50,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         self.outputLabel.text = @"Disconnected!";
-        self.connectButton.hidden = NO;
+        [self setupConnected:NO];
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidUpdateRSSI object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
@@ -58,25 +60,61 @@
         }
     }];
 
-    self.throttleSlider.hidden = YES;
-    self.throttleSlider.minimumValue = 1000;
-    self.throttleSlider.maximumValue = 2000;
+
     self.outputLabel.text = @"";
     self.rssiLabel.text = @"";
+    [self setupConnected:NO];
+    
 }
 
 
+-(void)setupConnected:(BOOL)connected{
+    if(connected){
+        self.connectButton.hidden = YES;
+        [self.sliders enumerateObjectsUsingBlock:^(UISlider *slider, NSUInteger idx, BOOL * _Nonnull stop) {
+            slider.hidden = NO;
+        }];
+        [self.labels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
+            label.hidden = NO;
+        }];
+        self.failsafeButton.hidden = NO;
+    } else {
+        self.connectButton.hidden = NO;
+        [self.sliders enumerateObjectsUsingBlock:^(UISlider *slider, NSUInteger idx, BOOL * _Nonnull stop) {
+            slider.hidden = YES;
+        }];
+        
+        [self.labels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
+            label.hidden = YES;
+        }];
+        self.failsafeButton.hidden = YES;
+    }
+}
 
 - (IBAction)connectButtonAction:(id)sender {
     [[VWWBLEController sharedInstance] scanForPeripherals];
     
 }
 
-- (IBAction)throttleSliderValueChanged:(UISlider*)sender {
-    NSUInteger throttle = sender.value;
-    [[VWWBLEController sharedInstance] sendThrottle:throttle];
+- (IBAction)sliderValueChanged:(UISlider*)sender {
+    if(sender.tag >= 1 && sender.tag <= 8){
+        [[VWWBLEController sharedInstance]sendToChannel:sender.tag value:sender.value];
+    }
 }
 
+- (IBAction)failsafeButtonTouchUpInside:(id)sender {
+    for(NSUInteger index = 1; index <= 8; index++){
+        [[VWWBLEController sharedInstance] sendToChannel:index value:1500];
+    }
+    [self.sliders enumerateObjectsUsingBlock:^(UISlider *slider, NSUInteger idx, BOOL * _Nonnull stop) {
+        slider.value = 1500;
+    }];
+    
+    [self.labels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
+        label.text = @"1500";
+    }];
+    
+}
 
 
 @end
