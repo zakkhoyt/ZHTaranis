@@ -47,8 +47,18 @@
 
 
 
-
-
+const UInt8 kThrottleCommand = 0x01;
+const UInt8 kAileronCommand = 0x02;
+const UInt8 kElevatorCommand = 0x03;
+const UInt8 kRudderCommand = 0x04;
+const UInt8 kAux1Command = 0x05;
+const UInt8 kAux2Command = 0x06;
+const UInt8 kAux3Command = 0x07;
+const UInt8 kAux4Command = 0x08;
+const UInt8 kResetCommand = 0xFF;
+    
+    
+    
 @interface VWWBLEController () <BLEDelegate>
 @property (strong, nonatomic) BLE *ble;
 @property (nonatomic, strong) NSTimer *rssiTimer;
@@ -61,6 +71,8 @@
 
 
 #pragma mark Public methods
+
+
 
 +(VWWBLEController*)sharedInstance{
     static VWWBLEController *instance;
@@ -87,6 +99,7 @@
     return self;
 }
 
+
 // Connect button will call to this
 -(void)scanForPeripherals {
     if (_ble.activePeripheral)
@@ -109,6 +122,34 @@
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
     
 }
+
+
+-(void)sendReset{
+    UInt8 buf[] = {kResetCommand, 0x00, 0x00};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [_ble write:data];
+}
+
+-(void)writeThrottle:(NSUInteger)throttle{
+    UInt8 lsb = throttle % 0xFF;
+    UInt8 msb = throttle >> 8;
+    ZH_LOG_DEBUG(@"throttle: %lu", (unsigned long)throttle);
+    ZH_LOG_DEBUG(@"msb: %lu", (unsigned long)msb);
+    ZH_LOG_DEBUG(@"lsb: %lu", (unsigned long)lsb);
+    UInt8 buf[] = {kThrottleCommand, msb, lsb};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [_ble write:data];
+}
+
+//-(void)initializeServosWithCompletionBlock:(VWWEmptyBlock)completionBlock{
+//    self.initServosCompletionBlock = completionBlock;
+//    UInt8 buf[3] = {kIntializeServosCommand , 0x00, 0x00};
+//    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+//    [self.ble write:data];
+//}
+
+#pragma mark Timers
+
 
 -(void)connectionTimer:(NSTimer *)timer
 {
@@ -158,13 +199,9 @@
     ZH_LOG_INFO(@"->Connected");
     
     [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerDidConnect object:nil];
-
-    // send reset
-    UInt8 buf[] = {0x04, 0x00, 0x00};
-    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-    [_ble write:data];
-    
     _rssiTimer = [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(readRSSITimer:) userInfo:nil repeats:YES];
+    
+    [self sendReset];
 }
 
 // When data is comming, this will be called

@@ -9,19 +9,24 @@
 #import "ZHBLEViewController.h"
 #import "VWWBLEController.h"
 #import "MBProgressHUD.h"
+#import "ZHDefines.h"
 
 @interface ZHBLEViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UILabel *outputLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
 @property (nonatomic, strong) MBProgressHUD *hud;
+@property (weak, nonatomic) IBOutlet UISlider *throttleSlider;
+
 @end
 
 @implementation ZHBLEViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    [VWWBLEController sharedInstance];
+    
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsNotConnected object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Not connected.";
     }];
@@ -32,6 +37,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidConnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Connected!";
+        self.throttleSlider.hidden = NO;
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidDisconnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
@@ -48,27 +54,30 @@
         }
     }];
 
+//    self.throttleSlider.hidden = YES;
+    self.throttleSlider.minimumValue = 1000;
+    self.throttleSlider.maximumValue = 2000;
     self.outputLabel.text = @"";
     self.rssiLabel.text = @"";
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 - (IBAction)connectButtonAction:(id)sender {
-//    self.connectButton.enabled = NO;
     [[VWWBLEController sharedInstance] scanForPeripherals];
     
 }
 
+- (IBAction)throttleSliderValueChanged:(UISlider*)sender {
+    NSUInteger throttle = sender.value;
+    
+    UInt8 lsb = throttle % 0xFF;
+    UInt8 msb = throttle >> 8;
+    ZH_LOG_DEBUG(@"throttle: %lu", (unsigned long)throttle);
+    ZH_LOG_DEBUG(@"msb: %lu", (unsigned long)msb);
+    ZH_LOG_DEBUG(@"lsb: %lu", (unsigned long)lsb);
+
+}
 
 
 

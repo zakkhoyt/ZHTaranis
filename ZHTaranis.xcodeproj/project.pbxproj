@@ -23,6 +23,7 @@
 		C6F694051BC4CF2D00D73D12 /* ZHUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F694041BC4CF2D00D73D12 /* ZHUtilities.m */; };
 		C6F6940E1BC59BB300D73D12 /* ZHModeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */; };
 		C6F694121BC5A6CB00D73D12 /* ZHSignalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */; };
+		C6F694141BC5EA1A00D73D12 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C6F694131BC5EA1A00D73D12 /* README.txt */; };
 		CF1D18301BC5CF2000631283 /* VWWBLEController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D182F1BC5CF2000631283 /* VWWBLEController.m */; };
 		CF1D18351BC5CF3600631283 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D18331BC5CF3600631283 /* BLE.m */; };
 		CF1D18441BC5D1BE00631283 /* ZHBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D18431BC5D1BE00631283 /* ZHBLEViewController.m */; };
@@ -56,6 +57,7 @@
 		C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModeTableViewController.m; sourceTree = "<group>"; };
 		C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSignalManager.h; sourceTree = "<group>"; };
 		C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSignalManager.m; sourceTree = "<group>"; };
+		C6F694131BC5EA1A00D73D12 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ZHTaranis_sketch.ino; sourceTree = "<group>"; };
 		CF1D182E1BC5CF2000631283 /* VWWBLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBLEController.h; sourceTree = "<group>"; };
 		CF1D182F1BC5CF2000631283 /* VWWBLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBLEController.m; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */,
+				C6F694131BC5EA1A00D73D12 /* README.txt */,
 			);
 			path = ZHTaranis_sketch;
 			sourceTree = "<group>";
@@ -213,19 +216,19 @@
 		CF1D18371BC5CF4A00631283 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CF1D18381BC5CF5D00631283 /* ZHPWMManager */,
+				CF1D18381BC5CF5D00631283 /* ZHSignalManager */,
 				CF1D18361BC5CF3A00631283 /* Bluetooth */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		CF1D18381BC5CF5D00631283 /* ZHPWMManager */ = {
+		CF1D18381BC5CF5D00631283 /* ZHSignalManager */ = {
 			isa = PBXGroup;
 			children = (
 				C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */,
 				C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */,
 			);
-			name = ZHPWMManager;
+			name = ZHSignalManager;
 			sourceTree = "<group>";
 		};
 		CF1D183F1BC5D16A00631283 /* ViewControllers */ = {
@@ -346,6 +349,7 @@
 				C6F693D91BC4CBC500D73D12 /* Assets.xcassets in Resources */,
 				C6F693FE1BC4CE9600D73D12 /* ZHTouchScene.sks in Resources */,
 				C6F693D71BC4CBC500D73D12 /* Main.storyboard in Resources */,
+				C6F694141BC5EA1A00D73D12 /* README.txt in Resources */,
 				C6F693FF1BC4CE9600D73D12 /* ZHSparkEmitter.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
