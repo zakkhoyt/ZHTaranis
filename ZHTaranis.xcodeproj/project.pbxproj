@@ -56,7 +56,6 @@
 		C6F6940D1BC59BB300D73D12 /* ZHModeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModeTableViewController.m; sourceTree = "<group>"; };
 		C6F694101BC5A6CB00D73D12 /* ZHSignalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSignalManager.h; sourceTree = "<group>"; };
 		C6F694111BC5A6CB00D73D12 /* ZHSignalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSignalManager.m; sourceTree = "<group>"; };
-		CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ZHTaranis_sketch.ino; sourceTree = "<group>"; };
 		CF1D182E1BC5CF2000631283 /* VWWBLEController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWBLEController.h; sourceTree = "<group>"; };
 		CF1D182F1BC5CF2000631283 /* VWWBLEController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWBLEController.m; sourceTree = "<group>"; };
 		CF1D18321BC5CF3600631283 /* BLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
@@ -67,6 +66,8 @@
 		CF1D18431BC5D1BE00631283 /* ZHBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEViewController.m; sourceTree = "<group>"; };
 		CF1D18471BC5D2B900631283 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		CF1D18481BC5D2B900631283 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CFC7E9EE1BC6FC2200B69A1A /* ZHTaranis_ble.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ZHTaranis_ble.ino; sourceTree = "<group>"; };
+		CFC7E9F01BC6FC2200B69A1A /* ZHTaranis_ppm.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ZHTaranis_ppm.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +84,7 @@
 		C6F693C01BC4CBC500D73D12 = {
 			isa = PBXGroup;
 			children = (
-				CF1D182B1BC5ACD500631283 /* ZHTaranis_sketch */,
+				CFC7E9EC1BC6FC2200B69A1A /* Arduino */,
 				C6F693CB1BC4CBC500D73D12 /* ZHTaranis */,
 				C6F693CA1BC4CBC500D73D12 /* Products */,
 			);
@@ -182,14 +183,6 @@
 			name = Mode;
 			sourceTree = "<group>";
 		};
-		CF1D182B1BC5ACD500631283 /* ZHTaranis_sketch */ = {
-			isa = PBXGroup;
-			children = (
-				CF1D182C1BC5ACD500631283 /* ZHTaranis_sketch.ino */,
-			);
-			path = ZHTaranis_sketch;
-			sourceTree = "<group>";
-		};
 		CF1D18311BC5CF3600631283 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +274,31 @@
 				CF1D18461BC5D2B900631283 /* MBProgressHUD */,
 			);
 			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		CFC7E9EC1BC6FC2200B69A1A /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				CFC7E9ED1BC6FC2200B69A1A /* ZHTaranis_ble */,
+				CFC7E9EF1BC6FC2200B69A1A /* ZHTaranis_ppm */,
+			);
+			path = Arduino;
+			sourceTree = "<group>";
+		};
+		CFC7E9ED1BC6FC2200B69A1A /* ZHTaranis_ble */ = {
+			isa = PBXGroup;
+			children = (
+				CFC7E9EE1BC6FC2200B69A1A /* ZHTaranis_ble.ino */,
+			);
+			path = ZHTaranis_ble;
+			sourceTree = "<group>";
+		};
+		CFC7E9EF1BC6FC2200B69A1A /* ZHTaranis_ppm */ = {
+			isa = PBXGroup;
+			children = (
+				CFC7E9F01BC6FC2200B69A1A /* ZHTaranis_ppm.ino */,
+			);
+			path = ZHTaranis_ppm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
