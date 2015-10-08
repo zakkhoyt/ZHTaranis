@@ -16,11 +16,8 @@
   #include <boards.h>
   #include <ble_shield.h>
   #include <services.h>
-  const unsigned int kLEDConnectedPin = 4;
-  const unsigned int kLEDInitializedPin = 5;
-  
-  const unsigned int kLoadCandyCommand = 0xB0;
-  const unsigned int kCandyWasLoadedCommand = 0xC0;
+  const uint16_t kLEDConnectedPin = 4;
+  const uint16_t kLEDInitializedPin = 5;
 #endif
 
 
@@ -39,7 +36,6 @@
 #define ZH_PPM_OUT_PIN 9  //set PPM signal output pin on the arduino
 uint8_t  g_ppmInput[CHANNELS] = {A0, A1, A2, A3, A4, A5, A4, A5}; // Input pins
 int ppm[CHANNELS];
-
 #endif
 
 uint16_t throttle = 1500;
@@ -47,7 +43,7 @@ uint16_t throttle = 1500;
 
 void setup(){  
   #if defined(VWW_ENABLE_BLE)
-    Serial.begin(57600);  
+//    Serial.begin(57600);  
     
     pinMode(kLEDConnectedPin, OUTPUT);
     digitalWrite(kLEDConnectedPin, LOW);
@@ -145,7 +141,7 @@ ISR(TIMER1_COMPA_vect){
   static boolean state = true;
   
   TCNT1 = 0;
-  
+  noInterrupts();
   if(state) {  //start pulse
     digitalWrite(ZH_PPM_OUT_PIN, ZH_STATE_POSITIVE);
     OCR1A = ZH_PULSE_LENGTH * 2;
@@ -169,6 +165,7 @@ ISR(TIMER1_COMPA_vect){
       cur_chan_numb++;
     }     
   }
+  interrupts();
 }
 
 #endif
