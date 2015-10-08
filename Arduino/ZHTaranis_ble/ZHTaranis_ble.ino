@@ -6,11 +6,13 @@
 #include <boards.h>
 #include <ble_shield.h>
 #include <services.h>
-const uint16_t kLEDConnectedPin = 13;
+const uint16_t kLEDConnectedPin = 4;
 const uint16_t kLEDInitializedPin = 5;
 
 void setup(){  
     Serial.begin(57600);
+    Serial1.begin(57600);
+    
     pinMode(kLEDConnectedPin, OUTPUT);
     digitalWrite(kLEDConnectedPin, LOW);
   
@@ -34,6 +36,7 @@ void loop() {
         if (data0 == 0xFF){
             Serial.println("Recieved initialize command.");
             digitalWrite(kLEDInitializedPin, HIGH);            
+                      
         } else if (data0 == 0x01){
             uint16_t value = data1 * 0xFF;
             value += data2;
@@ -42,6 +45,10 @@ void loop() {
             sprintf(buffer, "Throttle command: %d", throttle);  
             Serial.println(buffer);
             
+            char serialOut[16];  
+            sprintf(serialOut, "I1,%d\n", throttle);  
+            Serial.print(serialOut);
+            Serial1.print(serialOut);
         } else {
           Serial.println("Invalid command.");
         }

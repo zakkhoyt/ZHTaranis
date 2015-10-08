@@ -210,8 +210,8 @@ const UInt8 kResetCommand = 0xFF;
 // When RSSI is changed, this will be called
 -(void) bleDidUpdateRSSI:(NSNumber *) rssi {
     ZH_LOG_INFO(@"RSSI: %@", rssi.stringValue);
-    NSDictionary *userInfo = @{@"rssi": rssi};
-    [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerDidUpdateRSSI object:userInfo];
+    NSDictionary *object = @{@"rssi": rssi};
+    [[NSNotificationCenter defaultCenter] postNotificationName:VWWBLEControllerDidUpdateRSSI object:object];
 
 }
 

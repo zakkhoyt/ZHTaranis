@@ -29,14 +29,17 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsNotConnected object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Not connected.";
+        self.connectButton.hidden = NO;
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerIsConnecting object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Connecting!";
+        self.connectButton.hidden = NO;
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidConnect object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         self.outputLabel.text = @"Connected!";
+        self.connectButton.hidden = YES;
         self.throttleSlider.hidden = NO;
     }];
     
@@ -45,10 +48,11 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         self.outputLabel.text = @"Disconnected!";
+        self.connectButton.hidden = NO;
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWBLEControllerDidUpdateRSSI object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        NSNumber *rssi = note.userInfo[@"rssi"];
+        NSNumber *rssi = note.object[@"rssi"];
         if(rssi){
             self.rssiLabel.text = rssi.stringValue;
         }
