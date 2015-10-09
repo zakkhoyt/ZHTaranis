@@ -16,27 +16,33 @@
 #define ZH_STATE_POSITIVE 1  //set polarity of the pulses: 1 is positive, 0 is negative
 #define ZH_PPM_OUT_PIN 9  //set PPM signal output pin on the arduino
 
-#define ZH_INPUT_1 "I1"
-#define ZH_INPUT_2 "I2"
-#define ZH_INPUT_3 "I3"
-#define ZH_INPUT_4 "I4"
-#define ZH_INPUT_5 "I5"
-#define ZH_INPUT_6 "I6"
-#define ZH_INPUT_7 "I7"
-#define ZH_INPUT_8 "I8"
+#define ZH_INPUT_1 "1"
+#define ZH_INPUT_2 "2"
+#define ZH_INPUT_3 "3"
+#define ZH_INPUT_4 "4"
+#define ZH_INPUT_5 "5"
+#define ZH_INPUT_6 "6"
+#define ZH_INPUT_7 "7"
+#define ZH_INPUT_8 "8"
+#define ZH_INPUT_ALL "all"
+#define ZH_INPUT_INIT "init"
+#define ZH_INPUT_DEPART "depart"
+#define ZH_INPUT_ARM "arm"
+#define ZH_INPUT_DISARM "disarm"
+#define ZH_INPUT_ROVER "rover"
 
 
 uint8_t  g_ppmInput[CHANNELS] = {A0, A1, A2, A3, A4, A5, A4, A5}; // Input pins
-int g_ppmOutput[CHANNELS];
 
-int g_throttle = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_rudder = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_aux1 = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_aux2 = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_aux3 = ZH_DEFAULT_SERVO_MID_VALUE;
-int g_aux4 = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_ppmOutput[CHANNELS];
+uint16_t g_throttle = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_rudder = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_aux1 = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_aux2 = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_aux3 = ZH_DEFAULT_SERVO_MID_VALUE;
+uint16_t g_aux4 = ZH_DEFAULT_SERVO_MID_VALUE;
 
 String g_serialString = "";
 
@@ -129,7 +135,7 @@ void readSerial(){
     int commaLoc = g_serialString.indexOf(',');
     String commandString = g_serialString.substring(0, commaLoc);
     String valueString = g_serialString.substring(commaLoc+1, g_serialString.length());
-    int value = valueString.toInt();
+    uint16_t value = valueString.toInt();
     // Clip the value into valid range
     if(value < ZH_DEFAULT_SERVO_MIN_VALUE){
       value = ZH_DEFAULT_SERVO_MIN_VALUE;
@@ -155,6 +161,60 @@ void readSerial(){
       g_aux3 = value;
     } else if(commandString.equals(ZH_INPUT_8)){
       g_aux4 = value;
+    } else if(commandString.equals(ZH_INPUT_ALL)){
+      g_throttle = value;
+      g_aileron = value;
+      g_elevator = value;
+      g_rudder = value;
+      g_aux1 = value;
+      g_aux2 = value;
+      g_aux3 = value;
+      g_aux4 = value;
+    } else if(commandString.equals(ZH_INPUT_INIT)){
+      g_throttle = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aux1 = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aux2 = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aux3 = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aux4 = ZH_DEFAULT_SERVO_MID_VALUE;
+    } else if(commandString.equals(ZH_INPUT_DEPART)){
+      g_throttle = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aux1 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux2 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux3 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux4 = ZH_DEFAULT_SERVO_MIN_VALUE;
+    } else if(commandString.equals(ZH_INPUT_ARM)){
+      g_throttle = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux1 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux2 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux3 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux4 = ZH_DEFAULT_SERVO_MIN_VALUE;
+    } else if(commandString.equals(ZH_INPUT_DISARM)){
+      g_throttle = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MAX_VALUE;
+      g_aux1 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux2 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux3 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux4 = ZH_DEFAULT_SERVO_MIN_VALUE;
+    } else if(commandString.equals(ZH_INPUT_ROVER)){
+      g_throttle = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MAD_VALUE;
+      g_aux1 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux2 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux3 = ZH_DEFAULT_SERVO_MIN_VALUE;
+      g_aux4 = ZH_DEFAULT_SERVO_MIN_VALUE;
     } else {
       Serial.print("Unknown command: ");
       Serial.println(commandString);
@@ -162,8 +222,8 @@ void readSerial(){
     }
     
     Serial.print("command: ");
-    Serial.println(commandString);
-    Serial.print("value: ");
+    Serial.print(commandString);
+    Serial.print("\tvalue: ");
     Serial.println(value);  
   }
 }
