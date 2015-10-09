@@ -1,9 +1,37 @@
-// This sketch will read analgog values from A0-A5 and then generate a PPM signal on the pin of your choice (default 9)
+// This sketch will read commands from the serial port and then generate a PPM signal. (default output is pin 9)
 // The output of this sketch has been tested with an Orange RX 2.4GHz that I usually use with a taranis. 
-// However I've bypassed the taranis altogether and talk directly to the Tx module. 
+// However I've bypassed the taranis altogether and talk directly to the Tx module which works great
 //
-// TODO: Test  this as a trainer port input
+// ******** COMMANDS *********
+// $input,$value\n 
+// Where $input is an ascii value from 1 to 8,
+// and $value is an ascii value from 1000 to 2000.
+// For example open the serial terminal and type "1,2000" then press enter to set throttle to max output
 // 
+// all,$value\n
+// Sets all channels to $value
+// 
+// init
+// Sets all channels to mid value
+//
+// depart
+// Set throttle to off, AER to mid, all aux to min
+// 
+// arm
+// Simlates the down + right stick action to arm a quad
+// 
+// disarm
+// Simlates the down + left stick action to arm a quad
+// 
+// rover
+// TAER to mid, all aux to min
+//
+// 
+// 
+// ******** TODO: ******** 
+// Test  this as a trainer port input
+// 
+
 
 
 
@@ -210,7 +238,7 @@ void readSerial(){
       g_throttle = ZH_DEFAULT_SERVO_MID_VALUE;
       g_aileron = ZH_DEFAULT_SERVO_MID_VALUE;
       g_elevator = ZH_DEFAULT_SERVO_MID_VALUE;
-      g_rudder = ZH_DEFAULT_SERVO_MAD_VALUE;
+      g_rudder = ZH_DEFAULT_SERVO_MID_VALUE;
       g_aux1 = ZH_DEFAULT_SERVO_MIN_VALUE;
       g_aux2 = ZH_DEFAULT_SERVO_MIN_VALUE;
       g_aux3 = ZH_DEFAULT_SERVO_MIN_VALUE;
