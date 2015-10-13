@@ -38,6 +38,11 @@
 
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.motionManager stopAccelerometerUpdates];
+}
+
 -(void)startAccelerometers{
     
     for(NSUInteger index = 1; index <= 8; index++){
@@ -63,8 +68,9 @@
         } else {
             if(_sendOutput){
                 
-                NSUInteger elevator = 1500 + 500 * accelerometerData.acceleration.y;
-                NSUInteger aileron = 1500 + 500 * accelerometerData.acceleration.x;
+                const NSUInteger kSensitivity = 1000; // 500
+                NSUInteger elevator = 1500 + kSensitivity * accelerometerData.acceleration.y;
+                NSUInteger aileron = 1500 + kSensitivity * accelerometerData.acceleration.x;
                 [[VWWBLEController sharedInstance] sendThrottle:1000];
                 [[VWWBLEController sharedInstance] sendAileron:aileron];
                 [[VWWBLEController sharedInstance] sendElevator:elevator];
@@ -74,6 +80,7 @@
 }
 
 -(IBAction)startButtonTouchUpInside:(UIButton*)sender{
+    [self.startButton setTitle:@"Running" forState:UIControlStateNormal];
     _sendOutput = !_sendOutput;
 }
 

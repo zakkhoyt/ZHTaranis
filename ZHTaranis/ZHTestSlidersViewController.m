@@ -10,7 +10,9 @@
 #import "VWWBLEController.h"
 #import "MBProgressHUD.h"
 #import "ZHDefines.h"
+#import "ZHUserDefaults.h"
 
+const NSUInteger kValueLabelTag = 200;
 
 @interface ZHTestSlidersViewController ()
 @property (nonatomic, strong) MBProgressHUD *hud;
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) IBOutletCollection(UISlider) NSArray *valueSliders;
 @property (weak, nonatomic) IBOutlet UIButton *failsafeButton;
 @property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
+
 @end
 
 @implementation ZHTestSlidersViewController
@@ -36,31 +39,31 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark Private methods
 
 #pragma mark IBActions
 
 - (IBAction)sliderValueChanged:(UISlider*)sender {
     if(sender.tag >= 1 && sender.tag <= 8){
         [[VWWBLEController sharedInstance]sendToChannel:sender.tag value:sender.value];
+        
+        UILabel *valueLabel = [self.view viewWithTag:kValueLabelTag + sender.tag];
+        valueLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)sender.value];
     }
 }
 
 - (IBAction)failsafeButtonTouchUpInside:(id)sender {
     for(NSUInteger index = 1; index <= 8; index++){
-        [[VWWBLEController sharedInstance] sendToChannel:index value:1500];
+        [[VWWBLEController sharedInstance] sendToChannel:index value:[ZHUserDefaults midPPM]];
     }
+    
     [self.valueSliders enumerateObjectsUsingBlock:^(UISlider *slider, NSUInteger idx, BOOL * _Nonnull stop) {
-        slider.value = 1500;
+        slider.value = [ZHUserDefaults midPPM];
     }];
     
     [self.valueLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger idx, BOOL * _Nonnull stop) {
-        label.text = @"1500";
+        label.text = [NSString stringWithFormat:@"%lu", (unsigned long)[ZHUserDefaults midPPM]];
     }];
-    
 }
 
 

@@ -44,42 +44,42 @@ void loop() {
                       
         } else if (command == 0x01){
             char serialOut[16];  
-            sprintf(serialOut, "I1,%d\n", value);  
+            sprintf(serialOut, "1,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x02){
             char serialOut[16];  
-            sprintf(serialOut, "I2,%d\n", value);  
+            sprintf(serialOut, "2,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x03){
             char serialOut[16];  
-            sprintf(serialOut, "I3,%d\n", value);  
+            sprintf(serialOut, "3,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x04){
             char serialOut[16];  
-            sprintf(serialOut, "I4,%d\n", value);  
+            sprintf(serialOut, "4,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x05){
             char serialOut[16];  
-            sprintf(serialOut, "I5,%d\n", value);  
+            sprintf(serialOut, "5,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x06){
             char serialOut[16];  
-            sprintf(serialOut, "I6,%d\n", value);  
+            sprintf(serialOut, "6,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x07){
             char serialOut[16];  
-            sprintf(serialOut, "I7,%d\n", value);  
+            sprintf(serialOut, "7,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else if (command == 0x08){
             char serialOut[16];  
-            sprintf(serialOut, "I8,%d\n", value);  
+            sprintf(serialOut, "8,%d\n", value);  
             Serial.print(serialOut);
             Serial1.print(serialOut);
         } else {
